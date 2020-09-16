@@ -1,0 +1,290 @@
+<!doctype html>
+
+<title>CodeMirror: Magma mode</title>
+<meta charset="utf-8"/>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/codemirror.min.css" rel='stylesheet' type='text/css'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/theme/base16-dark.min.css" rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/addon/mode/simple.min.js"></script>
+<script src="mode.js"></script>
+<style>
+.CodeMirror {
+    font-family: 'Droid Sans Mono', monospace;
+    font-size: 14px;
+    height: auto;
+}
+</style>
+
+<form><textarea id="code" name="code">
+// A line comment
+
+/* A multiline
+ * block comment
+ */
+
+x := 0x12;
+x := 12;
+x := 12.34;
+x := 12e4;
+x := 12p5;
+x := 12.3e2p20;
+x := "a string";
+x := true;
+x := false;
+
+&+[];
+&*[];
+&and[];
+&or[];
+&cat[];
+&join[];
+&meet[];
+
+x join:= y;
+x meet:= y;
+x diff:= y;
+x sdiff:= y;
+x cat:= y;
+x *:= y;
+x +:= y;
+x -:= y;
+x /:= y;
+x ^:= y;
+x div:= y;
+x mod:= y;
+x and:= y;
+x or:= y;
+x xor:= y;
+
+!!x;
+!x;
+#x;
+x*y;
++x;
+x+y;
+-x;
+x-y;
+x->y;
+x.y;
+x/y;
+x^y;
+x@y;
+x@@y;
+x.y;
+x`y;
+x``y;
+
+[ 1, 2, 3 ];          // sequence
+\[ 1, 2, 3 ];         // literal sequence
+[! x in X : P(x) !];  // formal sequence
+[* 1, 2, 3 *];        // list
+{ 1, 2, 3 };          // set
+{* 1^^2, 2, 3^^10 *}; // multiset
+{@ 1, 2, 3 @};        // indexed set
+{! x in X : P(x) !};  // formal set
+&lt; 1, 2, 3 &gt;;          // tuple
+
+{ Integers() | x^2 : x in [1..10] };
+
+_ + _;
+x adj y;
+x and y;
+assert x eq y;
+assert2 x eq y;
+assert3 x eq y;
+assigned x;
+break;
+break x;
+[1..2 by 3];
+x cat y;
+clear;
+x cmpeq y;
+x cmpne y;
+continue;
+continue x;
+delete x;
+x diff y;
+x div y;
+x eq y;
+error "so bad";
+eval "12";
+exit;
+forward x;
+fprintf "fmt %o %o", x, y;
+freeze;
+x ge y;
+x gt y;
+iload "foo";
+import "file": x, y, z;
+x in y;
+x is y;
+x join y;
+x le y;
+load x;
+local x, y;
+x lt y;
+x meet y;
+x mod y;
+x ne y;
+not x;
+x notadj y;
+x notin y;
+x notsubset y;
+x or y;
+print x, y : Maximal;
+printf "%o", x;
+quit;
+read x;
+readi x;
+require x eq y;
+requirege x, 12;
+requirerange x, 1, 3;
+restore "foo";
+return x, y;
+save x;
+x sdiff y;
+x select y else z;
+x subset y;
+time x;
+vprint Foo, x, y;
+vprintf Foo, "%o", x;
+vtime x;
+x where y:=z;
+x where y is z;
+x xor y;
+
+case x:
+    when 1:
+        x1;
+    when 2:
+        x2;
+    else
+        x3;
+end case;
+
+declare attributes Type: x, y, z;
+declare verbose Flag, max;
+declare type Type;
+declare type Type: x, y, z;
+declare type Type[ElType];
+declare type Type[ElType]: x, y, z;
+
+for x := a to b do
+    z;
+end for;
+
+for x := a to b by c do
+    z;
+end for;
+
+for x in y do
+    z;
+end for;
+
+function foo(x, y, z : opt:=true, opt2:=false)
+    return x + y - opt * opt2 / z;
+end function;
+
+if true then
+    x;
+elif false then
+    y;
+else
+    z;
+end if;
+
+intrinsic foo (x, y::[], z::RngIntElt) -> Any
+    {documentation for foo}
+end intrinsic;
+
+procedure foo (~xs, x, y)
+    Append(~xs, x+y);
+end procedure;
+
+repeat
+    x;
+until true;
+
+try
+    x;
+catch e
+    y;
+end try;
+
+while true do
+    x;
+end while;
+
+car&lt;Integers(), Integers()&gt;;
+case&lt;x | 1: x1, 2: x2, default: x3&gt;;
+comp&lt;&gt;;
+cop&lt;&gt;;
+elt&lt;F | 1, 2&gt;;
+ext&lt;Q | f&gt;;
+func&lt;x, y | Foo(x,y)&gt;;
+hom&lt;X-&gt;Y | x :-&gt; y&gt;;
+ideal&lt;&gt;;
+iso&lt;&gt;;
+lideal&lt;&gt;;
+loc&lt;&gt;;
+map&lt;&gt;;
+ncl&lt;&gt;;
+pmap&lt;&gt;;
+proc&lt;x, y | Foo(x,y)&gt;;
+quo&lt;&gt;;
+recformat&lt;&gt;;
+rec&lt;&gt;;
+rideal&lt;&gt;;
+sub&lt;&gt;;
+
+AbelianFPGroup&lt;&gt;;
+AbelianGroup&lt;&gt;;
+FPGroup&lt;&gt;;
+Group&lt;&gt;;
+MatrixGroup&lt;&gt;;
+Monoid&lt;&gt;;
+PermutationGroup&lt;&gt;;
+PolycyclicGroup&lt;&gt;;
+Semigroup&lt;&gt;;
+
+AffineAlgebra&lt;&gt;;
+Algebra&lt;&gt;;
+AssociativeAlgebra&lt;&gt;;
+FPAlgebra&lt;&gt;;
+GroupAlgebra&lt;&gt;;
+LieAlgebra&lt;&gt;;
+MatrixAlgebra&lt;&gt;;
+QuaternionAlgebra&lt;&gt;;
+
+FiniteProjectivePlane&lt;&gt;;
+FiniteAffinePlane&lt;&gt;;
+IncidenceStructure&lt;&gt;;
+NearLinearSpace&lt;&gt;;
+LinearSpace&lt;&gt;;
+Design&lt;&gt;;
+Graph&lt;&gt;;
+Digraph&lt;&gt;;
+MultiGraph&lt;&gt;;
+MultiDigraph&lt;&gt;;
+Network&lt;&gt;;
+LinearCode&lt;&gt;;
+AdditiveCode&lt;&gt;;
+
+exists(t){e(x) : x in E | P(x)};
+forall(t){e(x) : x in E | P(x)};
+random{e(x) : x in E | P(x)};
+rep{e(x) : x in E | P(x)};
+</textarea></form>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    lineWrapping: true,
+    indentUnit: 2,
+    tabSize: 2,
+    autofocus: true,
+    mode: "text/x-magma",
+    theme: "base16-dark"
+  });
+</script>
